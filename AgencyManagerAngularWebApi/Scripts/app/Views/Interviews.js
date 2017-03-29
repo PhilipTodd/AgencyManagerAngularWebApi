@@ -1,0 +1,26 @@
+﻿(function () {
+
+    var agencyManager = angular.module("agencyManager");
+
+    agencyManager.component('interviews', {
+        bindings: {},
+        templateUrl: '/Scripts/app/views/interviews.html',
+        controllerAs: 'ctrl',
+        controller: ['agentService',
+          function (agentService) {
+              var ctrl = this;
+
+              ctrl.items = [];
+              ctrl.msg = 'interviews view component rendered correctly';
+
+              ctrl.$routerOnActivate = function () {
+                  //ctrl.load();
+              }
+
+              ctrl.load = function () {
+                  
+              }
+          }
+        ],
+    });
+})();

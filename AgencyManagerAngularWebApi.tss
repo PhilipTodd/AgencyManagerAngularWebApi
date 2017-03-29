@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\admin\addresscontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\admin\addresses.html</string>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\admin\addresses.js</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\services\addressservice.js</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Phil\Documents\Visual Studio 2015\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\Agency.html</string>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\agency.js</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\dal\agencymanagerinitialiser.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\agentcontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\admin\companycategories.html</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\contactcontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\services\contactservice.js</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\models\conversation.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\conversationcontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\services\conversationservice.js</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\app_start\webapiconfig.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>

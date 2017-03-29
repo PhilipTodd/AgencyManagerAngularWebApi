@@ -1,0 +1,19 @@
+﻿<h2>Admin</h2>
+
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <uib-tabset active="ctrl.activePill" vertical="true" type="pills">
+                <uib-tab index="0" heading="Addresses" ng-link="['Addresses']"></uib-tab>
+                <uib-tab index="1" heading="Company categories" ng-link="['CompanyCategories']"></uib-tab>
+                <uib-tab index="2" heading="Contact categories" ng-link="['ContactCategories']"></uib-tab>
+                <uib-tab index="3" heading="Industries" ng-link="['Industries']"></uib-tab>
+            </uib-tabset>
+        </div>
+        <div class="col-md-7">
+            <ng-outlet></ng-outlet>
+        </div>
+    </div>
+</div>

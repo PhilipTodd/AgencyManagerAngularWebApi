@@ -1,0 +1,83 @@
+﻿
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Addresses</h4>
+    </div>
+    <div class="panel-body">
+
+        <div class="ajax-div text-center" ng-show="ctrl.isLoading">
+            <img src="/Content/icons/ajax-loader-lg.gif" alt="working..." />
+        </div>
+
+        <div ng-show="!ctrl.isLoading">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in ctrl.items">
+                    <span>{{ item.asAddressString }}</span>
+                    <span class="pull-right">
+                        <a href="" ng-click="ctrl.open('EDIT', item)">Edit</a>
+                        <a href="" ng-click="ctrl.delete(item)">Delete</a>
+                    </span>
+                </li>
+            </ul>
+            <a href="" class="pull-right" ng-click="ctrl.open('NEW')">New</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="addressEdit.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit address</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+        <div class="ajax-div text-center" ng-show="ctrl.isSaving || ctrl.isLoading">
+            <img src="../../../../Content/icons/ajax-loader-lg.gif" alt="working..." />
+        </div>
+
+        <form class="form-horizontal" ng-show="!ctrl.isSaving && !ctrl.isLoading">
+            <div class="form-group">
+                <label for="inputNumber" class="col-sm-2 control-label">Number</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="ctrl.item.number" id="inputNumber" placeholder="Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputStreet" class="col-sm-2 control-label">Street</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="ctrl.item.street" id="inputStreet" placeholder="Street">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputSuburb" class="col-sm-2 control-label">Suburb</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="ctrl.item.suburb" id="inputSuburb" placeholder="Suburb">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputCity" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="ctrl.item.city" id="inputCity" placeholder="City">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputState" class="col-sm-2 control-label">State</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="ctrl.item.state" uib-typeahead="state for state in ctrl.states | filter:$viewValue | limitTo:8" id="inputState" placeholder="State">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPostCode" class="col-sm-2 control-label">PostCode</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="ctrl.item.postCode" id="inputPostCode" placeholder="PostCode">
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ctrl.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
+    </div>
+</script>

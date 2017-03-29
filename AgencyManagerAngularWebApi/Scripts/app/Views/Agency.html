@@ -1,0 +1,118 @@
+﻿<h2>Agency</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="list-group">
+                <a href=""
+                   class="list-group-item"
+                   ng-class="{ 'item-selected' : agency.isSelected }"
+                   ng-click="ctrl.selectAgent(agency)"
+                   ng-repeat="agency in ctrl.local.agents">
+                    {{ agency.name }}
+                </a>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-4" ng-show="ctrl.selectedValues.agent != null">
+                    <ul class="list-group">
+                        <a href=""
+                           class="list-group-item"
+                           ng-class="{ 'item-selected' : consultant.isSelected }"
+                           ng-click="ctrl.selectConsultant(consultant)"
+                           ng-repeat="consultant in ctrl.local.consultants">
+                            {{ consultant.name }}
+                        </a>
+                    </ul>
+                </div>
+                <div class="col-md-8" ng-show="ctrl.selectedValues.consultant">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Conversations</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div ng-show="ctrl.selectedValues.consultant && ctrl.local.conversations && ctrl.local.conversations.length == 0">
+                                <h6 class="italic">No conversations</h6>
+                            </div>
+                            <contact-conversation ng-repeat="item in ctrl.local.conversations"
+                                                  conversation="item"
+                                                  index="$index"
+                                                  open-conversation="ctrl.openConversation(editType, item)"
+                                                  delete-conversation="ctrl.deleteConversation(item)">
+
+                            </contact-conversation>
+                            <a href="" class="pull-right" ng-click="ctrl.openConversation('NEW')">New</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" ng-show="ctrl.selectedValues.consultant != null">
+                    position
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Conversation-->
+<script type="text/ng-template" id="contactConversation.html">
+    <div class="conversation-container" ng-class="{ 'odd' : (ctrl.index % 2) == 0, 'even' : (ctrl.index % 2) != 0 }">
+
+        <!--ctrl.conversation: {{ctrl.conversation}}-->
+
+        <div class="conversation-header">
+            <span>{{ ctrl.conversation.time | date }}</span>
+        </div>
+        <span class="pull-right">
+            <a href="" ng-click="ctrl.open('EDIT', ctrl.conversation)">Edit</a>
+            <a href="" ng-click="ctrl.delete(ctrl.conversation)">Delete</a>
+        </span>
+        <div class="conversation-body">
+            <span>{{ ctrl.conversation.notes }}</span>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="conversationEdit.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit conversation</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="inputDateTime" class="col-sm-2 control-label">Date</label>
+                <div class="col-sm-10">
+                    <p class="input-group">
+                        <input type="text" class="form-control"
+                               ng-model="ctrl.item.time"
+                               uib-datepicker-popup="{{ctrl.dateFormat}}"
+                               is-open="ctrl.popup1.opened"
+                               datepicker-options="dateOptions"
+                               ng-required="true"
+                               close-text="Close"
+                               alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputNotes" class="col-sm-2 control-label">Notes</label>
+                <div class="col-sm-10">
+                    <!--<input type="text" class="form-control" ng-model="ctrl.item.notes" id="inputNotes">-->
+                    <textarea class="form-control" ng-model="ctrl.item.notes" id="inputNotes"></textarea>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ctrl.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
+    </div>
+</script>
+<!--End Conversation-->
