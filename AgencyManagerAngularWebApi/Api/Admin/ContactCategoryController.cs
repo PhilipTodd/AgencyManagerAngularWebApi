@@ -20,19 +20,19 @@ namespace AgencyManager.Api.Admin
         }
 
         // GET: api/Agency
-        public IEnumerable<ContactCategory> Get()
+        public IHttpActionResult Get()
         {
-            return ContactCategoryRepository.GetContactCategorys().ToList();
+            return Ok(ContactCategoryRepository.GetContactCategorys().ToList());
         }
 
         // GET: api/Agency/5
-        public ContactCategory Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return ContactCategoryRepository.GetContactCategoryByID(id);
+            return Ok(ContactCategoryRepository.GetContactCategoryByID(id));
         }
 
         // POST: api/Agency
-        public void Post([FromBody]ContactCategory value)
+        public IHttpActionResult Post([FromBody]ContactCategory value)
         {
             if (value.Id == 0)
             {
@@ -44,6 +44,8 @@ namespace AgencyManager.Api.Admin
             }
 
             ContactCategoryRepository.Save();
+
+            return Ok();
         }
 
         // PUT: api/Agency/5
@@ -52,10 +54,12 @@ namespace AgencyManager.Api.Admin
         }
 
         // DELETE: api/Agency/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             ContactCategoryRepository.DeleteContactCategory(id);
             ContactCategoryRepository.Save();
+
+            return Ok();
         }
     }
 }

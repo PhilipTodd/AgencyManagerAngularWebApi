@@ -156,6 +156,16 @@ namespace AgencyManager.DAL
             conversations.ForEach(conversation => context.Conversations.Add(conversation));
             context.SaveChanges();
 
+            var positions = new List<Position>()
+            {
+                new Position() { ContactId = 1, Title = "Senior dev", Skills = "C#, AngularJS, SQL Server", Responsibilities = "Dev only" },
+                new Position() { ContactId = 1, Title = "Team lead", Skills = "C#, Jquery, MongoDB", Responsibilities = "Dev and lead" },
+                new Position() { ContactId = 1, Title = "Dev manager", Skills = "People management", Responsibilities = "Run department" },
+            };
+
+            positions.ForEach(position => context.Positions.Add(position));
+            context.SaveChanges();
+
         }
     }
 }

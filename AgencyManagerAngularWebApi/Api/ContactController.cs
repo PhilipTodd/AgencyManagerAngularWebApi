@@ -20,7 +20,7 @@ namespace AgencyManager.Api
         }
 
         // GET: api/Agency
-        public IEnumerable<Object> Get([FromUri]ContactRepository.ContactCriteria criteria)
+        public IHttpActionResult Get([FromUri]ContactRepository.ContactCriteria criteria)
         {
             var result = ContactRepository.GetContacts(criteria).Select(contact => new
             {
@@ -28,13 +28,13 @@ namespace AgencyManager.Api
                 Name = String.Format("{0} - {1}", contact.FirstName, contact.LastName)
             });
 
-            return result.ToArray();
+            return Ok(result.ToArray());
         }
         
         // GET: api/Agency/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            return Ok("value");
         }
 
         // POST: api/Agency

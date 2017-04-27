@@ -15,7 +15,6 @@ namespace AgencyManager.Models
             Contracts = new HashSet<Contract>();
             Documents = new HashSet<Document>();
             Addresses = new HashSet<Address>();
-            Positions = new HashSet<Position>();
         }
 
         public int Id { get; set; }
@@ -51,8 +50,8 @@ namespace AgencyManager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Addresses { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Position> Positions { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Position> Positions { get; set; }
 
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }

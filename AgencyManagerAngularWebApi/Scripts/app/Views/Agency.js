@@ -6,11 +6,58 @@
         bindings: {},
         templateUrl: '/Scripts/app/views/agency.html',
         controllerAs: 'ctrl',
-        controller: ['$scope', 'agentService', 'contactService', 'conversationService', '$uibModal', 'notifications',
-          function ($scope, agentService, contactService, conversationService, $uibModal, notifications) {
+        controller: ['$scope', 'agentService', 'contactService', 'conversationService',
+            'positionService', '$uibModal', 'notifications', 'uiGridConstants',
+          function ($scope, agentService, contactService, conversationService,
+              positionService, $uibModal, notifications, uiGridConstants) {
               var ctrl = this;
 
               ctrl.local = {};
+
+              var columnDefs = [
+                  {
+                      field: 'title',
+                      displayName: 'Title',
+                      visible: true,
+                      width: '200',
+                      enableHiding: false,
+                      enableSorting: false,
+                      //enableFiltering: true,
+                      //filter: {
+                      //    term: 'xx',
+                      //    condition: uiGridConstants.filter.CONTAINS,
+                      //    placeholder: 'starts with...',
+                      //    ariaLabel: 'Starts with filter for title',
+                      //    flags: { caseSensitive: false },
+                      //    type: uiGridConstants.filter.SELECT,
+                      //    selectOptions: [{ value: 1, label: 'male' }, { value: 2, label: 'female' }],
+                      //    disableCancelFilterButton: true
+                      //}
+                  },
+                  {
+                      field: 'responsibilities',
+                      displayName: 'Responsibilities',
+                      visible: true,
+                      width: '300',
+                      enableHiding: false,
+                      enableSorting: false,
+                  },
+                  {
+                      field: 'skills',
+                      displayName: 'Skills',
+                      visible: true,
+                      width: '300',
+                      enableHiding: false,
+                      enableSorting: false,
+                  }
+              ];
+
+              ctrl.positionGridOptions = {
+                  enableSorting: false,
+                  enableColumnResizing: true,
+                  columnDefs: columnDefs,
+                  data: ctrl.local.positions,
+              }
 
               ctrl.selectedValues = {
                   agent: null,
@@ -69,7 +116,7 @@
                   loadConversation(consultant);
                   loadPosition(consultant);
               }
-              
+
               function loadConversation(consultant) {
                   ctrl.local.conversations = [];
 
@@ -126,6 +173,29 @@
               }
 
               function loadPosition(consultant) {
+                  ctrl.local.positions = [];
+
+                  var criteria = {
+                      contactId: ctrl.selectedValues.consultant.id,
+                  }
+
+                  var _positions = positionService.getFiltered(criteria);
+                  _positions.then(function (response) {
+
+                      angular.forEach(response.data, function (position, key) {
+                          delete position.contactId;
+                          delete position.id;
+                      });
+
+                      ctrl.local.positions = response.data;
+                      ctrl.positionGridOptions.data = ctrl.local.positions;
+
+                      console.log('ctrl.positionGridOptions.data', ctrl.positionGridOptions.data);
+                  },
+                  function (error) {
+                      notifications.showError(error.status + ': ' + error.statusText);
+                      console.log('error occured retrieving positions: ' + error);
+                  });
 
               }
 
@@ -250,7 +320,7 @@
                 var ctrl = this;
 
                 ctrl.$onInit = function () {
-                   
+
                 };
 
                 ctrl.open = function (type, conversation) {
@@ -258,14 +328,14 @@
                 }
 
                 ctrl.delete = function (item) {
-                    ctrl.deleteConversation({item: item});
+                    ctrl.deleteConversation({ item: item });
 
-                //    ctrl.isSaving = true;
+                    //    ctrl.isSaving = true;
 
-                //    conversationService.delete(item.id).then(function (result) {
-                //        loadConversation(ctrl.selectedValues.consultant);
-                //        ctrl.isSaving = false;
-                //    });
+                    //    conversationService.delete(item.id).then(function (result) {
+                    //        loadConversation(ctrl.selectedValues.consultant);
+                    //        ctrl.isSaving = false;
+                    //    });
                 }
 
             }]

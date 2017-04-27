@@ -55,6 +55,9 @@ namespace AgencyManager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Interview> Interviews { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Position> Positions { get; set; }
+
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }
     }

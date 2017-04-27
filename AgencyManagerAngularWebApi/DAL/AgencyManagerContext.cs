@@ -49,10 +49,20 @@ namespace AgencyManager.DAL
                 .WithRequired(e => e.Company)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Company>()
+            //modelBuilder.Entity<Company>()
+            //    .HasMany(e => e.Positions)
+            //    .WithMany(e => e.Companies)
+            //    .Map(m => m.ToTable("PositionCompany").MapLeftKey("Companies_Id").MapRightKey("Positions_Id"));
+
+            //modelBuilder.Entity<Contact>()
+            //    .HasMany(e => e.Positions)
+            //    .WithMany(e => e.Contacts)
+            //    .Map(m => m.ToTable("PositionContact").MapLeftKey("Contact_Id").MapRightKey("Positions_Id"));
+
+            modelBuilder.Entity<Contact>()
                 .HasMany(e => e.Positions)
-                .WithMany(e => e.Companies)
-                .Map(m => m.ToTable("PositionCompany").MapLeftKey("Companies_Id").MapRightKey("Positions_Id"));
+                .WithRequired(e => e.Contact)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CompanyCategory>()
                 .HasMany(e => e.Companies)

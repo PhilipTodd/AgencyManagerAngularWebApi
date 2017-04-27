@@ -20,19 +20,19 @@ namespace AgencyManager.Api.Admin
         }
 
         // GET: api/Agency
-        public IEnumerable<Address> Get()
+        public IHttpActionResult Get()
         {
-            return AddressRepository.GetAddresss().ToList();
+            return Ok(AddressRepository.GetAddresss().ToList());
         }
 
         // GET: api/Agency/5
-        public Address Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return AddressRepository.GetAddressByID(id);
+            return Ok(AddressRepository.GetAddressByID(id));
         }
 
         // POST: api/Agency
-        public void Post([FromBody]Address value)
+        public IHttpActionResult Post([FromBody]Address value)
         {
             if (value.Id == 0)
             {
@@ -44,6 +44,8 @@ namespace AgencyManager.Api.Admin
             }
 
             AddressRepository.Save();
+
+            return Ok();
         }
 
         // PUT: api/Agency/5
@@ -52,10 +54,12 @@ namespace AgencyManager.Api.Admin
         }
 
         // DELETE: api/Agency/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             AddressRepository.DeleteAddress(id);
             AddressRepository.Save();
+
+            return Ok();
         }
     }
 }

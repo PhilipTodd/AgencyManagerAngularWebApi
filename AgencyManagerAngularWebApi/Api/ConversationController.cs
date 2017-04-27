@@ -20,7 +20,7 @@ namespace AgencyManager.Api
         }
 
         // GET: api/Agency
-        public IEnumerable<Object> Get([FromUri]ConversationRepository.ConversationCriteria criteria)
+        public IHttpActionResult Get([FromUri]ConversationRepository.ConversationCriteria criteria)
         {
             var result = ConversationRepository.GetConversations(criteria).Select(Conversation => new
             {
@@ -30,7 +30,7 @@ namespace AgencyManager.Api
                 ContactId = Conversation.ContactId,
             });
 
-            return result.ToArray();
+            return Ok(result.ToArray());
         }
 
         //public IEnumerable<Object> GetFiltered([FromUri]ConversationRepository.ConversationCriteria criteria)

@@ -84,3 +84,8 @@ code {
 .italic {
     font-style: italic;
 }
+
+.position-grid{
+    width: 100%;
+    height: 250px;
+}

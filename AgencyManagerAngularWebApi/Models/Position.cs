@@ -14,10 +14,13 @@ namespace AgencyManager.Models
             Contracts = new HashSet<Contract>();
             Documents = new HashSet<Document>();
             Interviews = new HashSet<Interview>();
-            Companies = new HashSet<Company>();
+            Contacts = new HashSet<Contact>();
         }
 
         public int Id { get; set; }
+
+        public int ContactId { get; set; }
+        public virtual Contact Contact { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -39,7 +42,7 @@ namespace AgencyManager.Models
         public virtual ICollection<Interview> Interviews { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Company> Companies { get; set; }
+        public virtual ICollection<Contact> Contacts { get; set; }
 
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }

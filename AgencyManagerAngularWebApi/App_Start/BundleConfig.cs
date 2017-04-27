@@ -26,6 +26,7 @@ namespace AgencyManager
 
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .IncludeDirectory("~/Scripts/Vendor", "*.js")
+                .Include("~/Scripts/Vendor/ui-grid.js")
                 .Include("~/Scripts/app/startUp.js")
                 .IncludeDirectory("~/Scripts/app/Services", "*.js")
                 .IncludeDirectory("~/Scripts/app/Views", "*.js")
@@ -44,6 +45,7 @@ namespace AgencyManager
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/ngNotificationsBar.css",
+                 "~/Content/ui-grid.css",
                  "~/Content/Site.css"));
         }
     }

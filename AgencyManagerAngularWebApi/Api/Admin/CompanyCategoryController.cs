@@ -20,19 +20,19 @@ namespace AgencyManager.Api.Admin
         }
 
         // GET: api/Agency
-        public IEnumerable<CompanyCategory> Get()
+        public IHttpActionResult Get()
         {
-            return companyCategoryRepository.GetCompanyCategorys().ToList();
+            return Ok(companyCategoryRepository.GetCompanyCategorys().ToList());
         }
 
         // GET: api/Agency/5
-        public CompanyCategory Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return companyCategoryRepository.GetCompanyCategoryByID(id);
+            return Ok(companyCategoryRepository.GetCompanyCategoryByID(id));
         }
 
         // POST: api/Agency
-        public void Post([FromBody]CompanyCategory value)
+        public IHttpActionResult Post([FromBody]CompanyCategory value)
         {
             if (value.Id == 0)
             {
@@ -44,6 +44,8 @@ namespace AgencyManager.Api.Admin
             }
 
             companyCategoryRepository.Save();
+
+            return Ok();
         }
 
         // PUT: api/Agency/5
@@ -52,10 +54,12 @@ namespace AgencyManager.Api.Admin
         }
 
         // DELETE: api/Agency/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             companyCategoryRepository.DeleteCompanyCategory(id);
             companyCategoryRepository.Save();
+
+            return Ok();
         }
     }
 }

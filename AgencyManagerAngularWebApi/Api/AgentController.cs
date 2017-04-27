@@ -19,8 +19,7 @@ namespace AgencyManager.Api
             agentRepository = new AgentRepository(new AgencyManagerContext());
         }
 
-        // GET: api/Agency
-        public IEnumerable<Object> Get()
+        public IHttpActionResult Get()
         {
             List<Agent> agents = new List<Agent>();
 
@@ -35,13 +34,13 @@ namespace AgencyManager.Api
                     Name = agent.Name
                 });
 
-            return result.ToArray();
+            return Ok(result.ToArray());
         }
 
         // GET: api/Agency/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            return Ok("value");
         }
 
         // POST: api/Agency

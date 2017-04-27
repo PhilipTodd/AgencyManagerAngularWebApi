@@ -186,6 +186,7 @@
     <Compile Include="Api\AgentController.cs" />
     <Compile Include="Api\ContactController.cs" />
     <Compile Include="Api\ConversationController.cs" />
+    <Compile Include="Api\PositionController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="DAL\Repository\ContactRepository.cs" />
     <Compile Include="DAL\Repository\ConversationRepository.cs" />
     <Compile Include="DAL\Repository\IndustryRepository.cs" />
+    <Compile Include="DAL\Repository\PositionRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,8 +229,12 @@
     <Content Include="Content\icons\ajax-loader-sm.gif" />
     <Content Include="Content\ngNotificationsBar.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\ui-grid.css" />
+    <Content Include="Content\ui-grid.min.css" />
+    <Content Include="Content\ui-grid.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ui-grid.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
@@ -242,6 +248,7 @@
     <Content Include="Scripts\app\Services\ContactService.js" />
     <Content Include="Scripts\app\Services\conversationService.js" />
     <Content Include="Scripts\app\Services\IndustryService.js" />
+    <Content Include="Scripts\app\Services\positionService.js" />
     <Content Include="Scripts\app\startUp.js" />
     <Content Include="Scripts\app\Views\Admin.html" />
     <Content Include="Scripts\app\Views\Admin.js" />
@@ -263,6 +270,12 @@
     <Content Include="Scripts\app\Views\Interviews.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\ui-grid.ttf" />
+    <Content Include="fonts\ui-grid.woff" />
+    <Content Include="fonts\ui-grid.eot" />
+    <Content Include="Content\ui-grid.eot" />
+    <Content Include="Content\ui-grid.ttf" />
+    <Content Include="Content\ui-grid.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -273,6 +286,8 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\Vendor\ngNotificationsBar.js" />
     <Content Include="Scripts\Vendor\ui-bootstrap-tpls-2.2.0.min.js" />
+    <Content Include="Scripts\Vendor\ui-grid.js" />
+    <Content Include="Scripts\Vendor\ui-grid.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\_Home.cshtml" />
