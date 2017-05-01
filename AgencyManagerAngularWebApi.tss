@@ -2,11 +2,17 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\admin\addresscontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\agency.html</string>
-      <string>C:\Users\Phil\Documents\Visual Studio 2015\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\Agency.js</string>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\agency.js</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\dal\agencymanagerinitialiser.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\agentcontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\app_start\bundleconfig.cs</string>
@@ -15,10 +21,19 @@
       <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\admin\companycategories.html</string>
     </ArrayOfString>
     <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\admin\companycategorycontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Phil\Documents\Visual Studio 2015\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\Admin\ContactCategoryController.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\contactcontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2015\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\Home.html</string>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\conversationcontroller.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\home.html</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2015\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\models\position.cs</string>
