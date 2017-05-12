@@ -6,10 +6,10 @@
         bindings: {},
         templateUrl: '/Scripts/app/views/admin.html',
         $routeConfig: [
-          { path: '/addresses', name: 'Addresses', component: 'addresses', useAsDefault: true },
-          { path: '/companyCategories', name: 'CompanyCategories', component: 'companyCategories' },
-          { path: '/contactCategories', name: 'ContactCategories', component: 'contactCategories' },
-          { path: '/industries', name: 'Industries', component: 'industries' },
+          { path: '/addresses', name: 'ADDRESSES', component: 'addresses', useAsDefault: true },
+          { path: '/companyCategories', name: 'COMPANYCATEGORIES', component: 'companyCategories' },
+          { path: '/contactCategories', name: 'CONTACTCATEGORIES', component: 'contactCategories' },
+          { path: '/industries', name: 'INDUSTRIES', component: 'industries' },
         ],
         controllerAs: 'ctrl',
         controller: [ '$location',
@@ -18,6 +18,14 @@
 
               ctrl.items = [];
               ctrl.msg = 'admin view component rendered correctly';
+
+              ctrl.$onInit = function () {
+                  ctrl.parent.activeNav = 'HOME';
+              }
+
+              ctrl.$onInit = function () {
+                  ctrl.parent.activeNav = 'ADMIN';
+              }
 
               ctrl.$routerOnActivate = function (next, previous) {
                   console.log($location.url())

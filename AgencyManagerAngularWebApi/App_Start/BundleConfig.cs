@@ -30,6 +30,7 @@ namespace AgencyManager
                 .Include("~/Scripts/app/startUp.js")
                 .IncludeDirectory("~/Scripts/app/Services", "*.js")
                 .IncludeDirectory("~/Scripts/app/Views", "*.js")
+                .IncludeDirectory("~/Scripts/app/Helpers", "*.js")
                 .IncludeDirectory("~/Scripts/app/Views/Admin/", "*.js")
                 .Include("~/Scripts/app/root.js"));
 

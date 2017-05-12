@@ -5,6 +5,9 @@
     agencyManager.component('agency', {
         bindings: {},
         templateUrl: '/Scripts/app/views/agency.html',
+        require: {
+            parent: '^root'
+        },
         controllerAs: 'ctrl',
         controller: ['$scope', 'agentService', 'contactService', 'conversationService',
             'positionService', '$uibModal', 'notifications', 'uiGridConstants',
@@ -13,6 +16,7 @@
               var ctrl = this;
 
               ctrl.local = {};
+              var agentFactory = new agentService.factory();
 
               var columnDefs = [
                   {
@@ -65,10 +69,23 @@
                   position: null
               };
 
+              ctrl.$onInit = function () {
+                  ctrl.parent.activeNav = 'AGENCY';
+              }
+
               ctrl.$routerOnActivate = function () {
                   initialise();
                   ctrl.load();
               }
+
+              ctrl.onNewAgentClicked = function (callBack) {
+                  var newAgent = agentFactory.createAgent();
+                  callBack(newAgent);
+              }
+
+              //ctrl.onNewAgentClicked = function () {
+              //    console.log('ctrl.onNewAgentClicked = function () {');
+              //}
 
               ctrl.load = function () {
                   var _agencies = agentService.getAll();

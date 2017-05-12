@@ -29,30 +29,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ng-link="['Home']">Agency manager</a>
+                <a class="navbar-brand" ng-link="['HOME']">Agency manager</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a ng-link="['Home']">Home</a></li>
-                    <li><a ng-link="['Agency']">Agency</a></li>
-                    <li><a ng-link="['Interviews']">Interviews</a></li>
-                    <li><a ng-link="['Documents']">Documents</a></li>
-                    <li><a ng-link="['Admin']">Admin</a></li>
 
-                    <!--<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>-->
+                    <li ng-class="{active: ctrl.activeNav == 'HOME'}"><a ng-click="ctrl.activeNav = 'HOME'" ng-link="['HOME']">Home</a></li>
+                    <li ng-class="{active: ctrl.activeNav == 'AGENCY'}"><a ng-click="ctrl.activeNav = 'AGENCY'" ng-link="['AGENCY']">Agency</a></li>
+                    <li ng-class="{active: ctrl.activeNav == 'INTERVIEWS'}"><a ng-click="ctrl.activeNav = 'INTERVIEWS'" ng-link="['INTERVIEWS']">Interviews</a></li>
+                    <li ng-class="{active: ctrl.activeNav == 'DOCUMENTS'}"><a ng-click="ctrl.activeNav = 'DOCUMENTS'" ng-link="['DOCUMENTS']">Documents</a></li>
+                    <li ng-class="{active: ctrl.activeNav == 'ADMIN'}"><a ng-click="ctrl.activeNav = 'ADMIN'" ng-link="['ADMIN']">Admin</a></li>
+                    <!--<form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search for ">
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>-->
+                    <li>
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search for ">
+                            </div>
+                            <button type="submit" class="btn btn-default">Search</button>
+                        </form>
+                    </li>
+
+                   
                 </ul>
             </div><!--/.nav-collapse -->
+
+            
         </div>
     </div>
 

@@ -13,6 +13,10 @@
               ctrl.items = [];
               ctrl.msg = 'interviews view component rendered correctly';
 
+              ctrl.$onInit = function () {
+                  ctrl.parent.activeNav = 'INTERVIEWS';
+              }
+
               ctrl.$routerOnActivate = function () {
                   //ctrl.load();
               }

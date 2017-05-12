@@ -13,6 +13,10 @@
               ctrl.items = [];
               ctrl.msg = 'documents view component rendered correctly';
 
+              ctrl.$onInit = function () {
+                  ctrl.parent.activeNav = 'DOCUMENTS';
+              }
+
               ctrl.$routerOnActivate = function () {
                   //ctrl.load();
               }
