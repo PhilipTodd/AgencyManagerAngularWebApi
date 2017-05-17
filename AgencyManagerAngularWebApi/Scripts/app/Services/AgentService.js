@@ -17,6 +17,14 @@
         return $http.get('/api/agent');
     }
 
+    agentService.save = function (item) {
+        return $http.post('/api/agent', item);
+    }
+
+    agentService.delete = function (id) {
+        return $http.delete('/api/agent/' + id);
+    }
+
     return agentService;
 
 }]);

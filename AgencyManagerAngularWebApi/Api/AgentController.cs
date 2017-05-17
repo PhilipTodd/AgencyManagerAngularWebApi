@@ -44,8 +44,20 @@ namespace AgencyManager.Api
         }
 
         // POST: api/Agency
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]Agent value)
         {
+            if (value.Id == 0)
+            {
+                agentRepository.InsertAgent(value);
+            }
+            else
+            {
+                agentRepository.UpdateAgent(value);
+            }
+
+            agentRepository.Save();
+
+            return Ok(value);
         }
 
         // PUT: api/Agency/5

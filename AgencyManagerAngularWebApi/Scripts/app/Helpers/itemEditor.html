@@ -1,3 +1,31 @@
-﻿<a href="" ng-click="ctrl.new()">New</a>&nbsp;
-<a href="" ng-click="ctrl.edit()">Edit</a>&nbsp; 
-<a href="" ng-click="ctrl.delete()">Delete</a>&nbsp;
+﻿<div class="item-editor">
+    <button class="btn btn-link" href="" ng-click="ctrl.new()">New</button>&nbsp;
+    <button class="btn btn-link" href="" ng-click="ctrl.edit()" ng-disabled="ctrl.item == null">Edit</button>&nbsp;
+    <button class="btn btn-link" href="" ng-click="ctrl.delete()" ng-disabled="ctrl.item == null">Delete</button>&nbsp;
+</div>
+
+<!--Agent-->
+<script type="text/ng-template" id="agentEdit.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit agent</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+        <div class="ajax-div text-center" ng-show="ctrl.isSaving || ctrl.isLoading">
+            <img src="../../../../Content/icons/ajax-loader-lg.gif" alt="working..." />
+        </div>
+
+        <form class="form-horizontal" ng-show="!ctrl.isSaving && !ctrl.isLoading">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="ctrl.item.name" id="name" placeholder="Name">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ctrl.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
+    </div>
+</script>

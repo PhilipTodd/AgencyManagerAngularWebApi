@@ -93,6 +93,9 @@ code {
     height: 250px;
 }
 
+.list-group {
+    margin-bottom: 5px;
+}
 
 /*.waves-effect {
     position: relative;
@@ -201,7 +204,6 @@ code {
 .btn .fa, .btn-floating, .picker__box, .product-table td, .switch label .lever {
     vertical-align: middle
 }*/
-
 .home-container {
     padding-top: 50px;
 }
@@ -236,6 +238,7 @@ code {
     display: block;
     width: 100%;
     height: auto;
+    cursor:pointer;
 }
 
 .card-title {
@@ -260,6 +263,10 @@ code {
     color: rgba(0, 0, 0, .4);
     border-top: 1px solid rgba(0, 0, 0, .05) !important;
     background: #fff;
+}
+
+div.item-editor .btn {
+    padding: 0;
 }
 
 /*

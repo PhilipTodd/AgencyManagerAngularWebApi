@@ -10,254 +10,291 @@
         },
         controllerAs: 'ctrl',
         controller: ['$scope', 'agentService', 'contactService', 'conversationService',
-            'positionService', '$uibModal', 'notifications', 'uiGridConstants',
-          function ($scope, agentService, contactService, conversationService,
-              positionService, $uibModal, notifications, uiGridConstants) {
-              var ctrl = this;
+            'positionService', '$uibModal', 'notifications', 'uiGridConstants', '$timeout',
+            function ($scope, agentService, contactService, conversationService,
+                positionService, $uibModal, notifications, uiGridConstants, $timeout) {
+                var ctrl = this;
 
-              ctrl.local = {};
-              var agentFactory = new agentService.factory();
+                ctrl.local = {};
+                var agentFactory = new agentService.factory();
 
-              var columnDefs = [
-                  {
-                      field: 'title',
-                      displayName: 'Title',
-                      visible: true,
-                      width: '200',
-                      enableHiding: false,
-                      enableSorting: false,
-                      //enableFiltering: true,
-                      //filter: {
-                      //    term: 'xx',
-                      //    condition: uiGridConstants.filter.CONTAINS,
-                      //    placeholder: 'starts with...',
-                      //    ariaLabel: 'Starts with filter for title',
-                      //    flags: { caseSensitive: false },
-                      //    type: uiGridConstants.filter.SELECT,
-                      //    selectOptions: [{ value: 1, label: 'male' }, { value: 2, label: 'female' }],
-                      //    disableCancelFilterButton: true
-                      //}
-                  },
-                  {
-                      field: 'responsibilities',
-                      displayName: 'Responsibilities',
-                      visible: true,
-                      width: '300',
-                      enableHiding: false,
-                      enableSorting: false,
-                  },
-                  {
-                      field: 'skills',
-                      displayName: 'Skills',
-                      visible: true,
-                      width: '300',
-                      enableHiding: false,
-                      enableSorting: false,
-                  }
-              ];
+                var columnDefs = [
+                    {
+                        field: 'title',
+                        displayName: 'Title',
+                        visible: true,
+                        width: '200',
+                        enableHiding: false,
+                        enableSorting: false,
+                        //enableFiltering: true,
+                        //filter: {
+                        //    term: 'xx',
+                        //    condition: uiGridConstants.filter.CONTAINS,
+                        //    placeholder: 'starts with...',
+                        //    ariaLabel: 'Starts with filter for title',
+                        //    flags: { caseSensitive: false },
+                        //    type: uiGridConstants.filter.SELECT,
+                        //    selectOptions: [{ value: 1, label: 'male' }, { value: 2, label: 'female' }],
+                        //    disableCancelFilterButton: true
+                        //}
+                    },
+                    {
+                        field: 'responsibilities',
+                        displayName: 'Responsibilities',
+                        visible: true,
+                        width: '300',
+                        enableHiding: false,
+                        enableSorting: false,
+                    },
+                    {
+                        field: 'skills',
+                        displayName: 'Skills',
+                        visible: true,
+                        width: '300',
+                        enableHiding: false,
+                        enableSorting: false,
+                    }
+                ];
 
-              ctrl.positionGridOptions = {
-                  enableSorting: false,
-                  enableColumnResizing: true,
-                  columnDefs: columnDefs,
-                  data: ctrl.local.positions,
-              }
+                ctrl.positionGridOptions = {
+                    enableSorting: false,
+                    enableColumnResizing: true,
+                    columnDefs: columnDefs,
+                    data: ctrl.local.positions,
+                }
 
-              ctrl.selectedValues = {
-                  agent: null,
-                  consultant: null,
-                  position: null
-              };
+                ctrl.selectedValues = {
+                    agent: null,
+                    consultant: null,
+                    position: null
+                };
 
-              ctrl.$onInit = function () {
-                  ctrl.parent.activeNav = 'AGENCY';
-              }
+                ctrl.$onInit = function () {
+                    ctrl.parent.activeNav = 'AGENCY';
+                }
 
-              ctrl.$routerOnActivate = function () {
-                  initialise();
-                  ctrl.load();
-              }
+                ctrl.$routerOnActivate = function () {
+                    initialise();
+                    ctrl.load();
+                }
 
-              ctrl.onNewAgentClicked = function (callBack) {
-                  var newAgent = agentFactory.createAgent();
-                  callBack(newAgent);
-              }
+                ctrl.onNewAgentClicked = function (callBack) {
+                    var newAgent = agentFactory.createAgent();
+                    callBack(newAgent);
+                }
 
-              //ctrl.onNewAgentClicked = function () {
-              //    console.log('ctrl.onNewAgentClicked = function () {');
-              //}
+                ctrl.agentChanged = function (value) {
+                    console.log('ctrl.agentChanged = function (item) {', value);
 
-              ctrl.load = function () {
-                  var _agencies = agentService.getAll();
-                  _agencies.then(function (response) {
-                      ctrl.local.agents = response.data;
+                    if (value.type = 'REFRESH') {
+                        ctrl.load(function () {
 
-                      clearSelection('AGENT');
-                  },
-                  function (error) {
-                      notifications.showError(error.status + ': ' + error.statusText);
-                      console.log('error occured retrieving agencies: ' + error);
-                  });
-              }
+                            var index = null;
 
-              ctrl.selectAgent = function (agent) {
-                  clearSelection('AGENT');
-                  agent.isSelected = true;
-                  ctrl.selectedValues.agent = agent;
-                  loadConsultants(agent);
-              }
+                            angular.forEach(ctrl.local.agents, function (item, key) {
+                                if (item.id == value.item.id) {
+                                    index = ctrl.local.agents.indexOf(item);
+                                }
+                            });
 
-              function loadConsultants(agent) {
-                  ctrl.local.consultants = [];
+                            ctrl.local.agents[index] = angular.copy(value.item);
 
-                  var criteria = {
-                      agentId: ctrl.selectedValues.agent.id,
-                  }
+                            ctrl.selectAgent(ctrl.local.agents[index]);
+                        });
+                    }
+                };
 
-                  var _consultants = contactService.getFiltered(criteria);
-                  _consultants.then(function (response) {
-                      ctrl.local.consultants = response.data;
+                ctrl.load = function (callBack) {
+                    ctrl.loadingAgents = true;
 
-                      clearSelection('CONSULTANT');
-                  },
-                  function (error) {
-                      notifications.showError(error.status + ': ' + error.statusText);
-                      console.log('error occured retrieving consultants: ' + error);
-                  });
-              }
+                    var _agencies = agentService.getAll();
+                    _agencies.then(function (response) {
+                        ctrl.local.agents = response.data;
 
-              ctrl.selectConsultant = function (consultant) {
-                  clearSelection('CONSULTANT');
-                  consultant.isSelected = true;
-                  ctrl.selectedValues.consultant = consultant;
-                  loadConversation(consultant);
-                  loadPosition(consultant);
-              }
+                        //$timeout(function () {
+                        //    ctrl.loadingAgents = false;
+                        //}, 5000)
+                        ctrl.loadingAgents = false;
 
-              function loadConversation(consultant) {
-                  ctrl.local.conversations = [];
+                        clearSelection('AGENT');
 
-                  var criteria = {
-                      contactId: ctrl.selectedValues.consultant.id,
-                  }
+                        if (callBack) callBack();
+                    },
+                        function (error) {
+                            ctrl.loadingAgents = false;
+                            notifications.showError(error.status + ': ' + error.statusText);
+                            console.log('error occured retrieving agencies: ' + error);
+                        });
+                }
 
-                  var _conversations = conversationService.getFiltered(criteria);
-                  _conversations.then(function (response) {
+                ctrl.selectAgent = function (agent) {
+                    clearSelection('AGENT');
+                    agent.isSelected = true;
+                    ctrl.selectedValues.agent = agent;
+                    loadConsultants(agent);
+                }
 
-                      angular.forEach(response.data, function (item, key) {
-                          item.time = new Date(item.time);
-                      });
+                function loadConsultants(agent) {
+                    ctrl.loadingConsultants = true;
+                    ctrl.local.consultants = [];
 
-                      ctrl.local.conversations = response.data;
-                  },
-                  function (error) {
-                      notifications.showError(error.status + ': ' + error.statusText);
-                      console.log('error occured retrieving conversations: ' + error);
-                  });
-              }
+                    var criteria = {
+                        agentId: ctrl.selectedValues.agent.id,
+                    }
 
-              ctrl.openConversation = function (editType, item) {
-                  var modalInstance = $uibModal.open({
-                      animation: true,
-                      component: 'conversationEdit',
-                      resolve: {
-                          editParams: function () {
-                              return {
-                                  editType: editType,
-                                  consultantId: ctrl.selectedValues.consultant.id,
-                                  item: item,
-                              };
-                          }
-                      }
-                  });
+                    var _consultants = contactService.getFiltered(criteria);
+                    _consultants.then(function (response) {
+                        ctrl.local.consultants = response.data;
+                        ctrl.loadingConsultants = false;
 
-                  modalInstance.result.then(function () {
-                  }, function (value) {
-                      console.log('modal-component dismissed at: ' + new Date());
-                      if (value == 'REFRESH') {
-                          loadConversation(ctrl.selectedValues.consultant);
-                      }
-                  });
-              }
+                        clearSelection('CONSULTANT');
+                    },
+                        function (error) {
+                            ctrl.loadingConsultants = false;
+                            notifications.showError(error.status + ': ' + error.statusText);
+                            console.log('error occured retrieving consultants: ' + error);
+                        });
+                }
 
-              ctrl.deleteConversation = function (item) {
-                  ctrl.isSaving = true;
+                ctrl.selectConsultant = function (consultant) {
+                    clearSelection('CONSULTANT');
+                    consultant.isSelected = true;
+                    ctrl.selectedValues.consultant = consultant;
+                    loadConversation(consultant);
+                    loadPosition(consultant);
+                }
 
-                  conversationService.delete(item.id).then(function (result) {
-                      loadConversation(ctrl.selectedValues.consultant);
-                      ctrl.isSaving = false;
-                  });
-              }
+                function loadConversation(consultant) {
+                    ctrl.loadingConversation = true;
+                    ctrl.local.conversations = [];
 
-              function loadPosition(consultant) {
-                  ctrl.local.positions = [];
+                    var criteria = {
+                        contactId: ctrl.selectedValues.consultant.id,
+                    }
 
-                  var criteria = {
-                      contactId: ctrl.selectedValues.consultant.id,
-                  }
+                    var _conversations = conversationService.getFiltered(criteria);
+                    _conversations.then(function (response) {
 
-                  var _positions = positionService.getFiltered(criteria);
-                  _positions.then(function (response) {
+                        angular.forEach(response.data, function (item, key) {
+                            item.time = new Date(item.time);
+                        });
 
-                      angular.forEach(response.data, function (position, key) {
-                          delete position.contactId;
-                          delete position.id;
-                      });
+                        ctrl.loadingConversation = false;
+                        ctrl.local.conversations = response.data;
+                    },
+                        function (error) {
+                            ctrl.loadingConversation = false;
+                            notifications.showError(error.status + ': ' + error.statusText);
+                            console.log('error occured retrieving conversations: ' + error);
+                        });
+                }
 
-                      ctrl.local.positions = response.data;
-                      ctrl.positionGridOptions.data = ctrl.local.positions;
+                ctrl.openConversation = function (editType, item) {
+                    var modalInstance = $uibModal.open({
+                        animation: true,
+                        component: 'conversationEdit',
+                        resolve: {
+                            editParams: function () {
+                                return {
+                                    editType: editType,
+                                    consultantId: ctrl.selectedValues.consultant.id,
+                                    item: item,
+                                };
+                            }
+                        }
+                    });
 
-                      console.log('ctrl.positionGridOptions.data', ctrl.positionGridOptions.data);
-                  },
-                  function (error) {
-                      notifications.showError(error.status + ': ' + error.statusText);
-                      console.log('error occured retrieving positions: ' + error);
-                  });
+                    modalInstance.result.then(function () {
+                    }, function (value) {
+                        console.log('modal-component dismissed at: ' + new Date());
+                        if (value == 'REFRESH') {
+                            loadConversation(ctrl.selectedValues.consultant);
+                        }
+                    });
+                }
 
-              }
+                ctrl.deleteConversation = function (item) {
+                    ctrl.isSaving = true;
+                    ctrl.loadConversation = true;
 
-              function clearSelection(level) {
-                  switch (level) {
-                      case 'AGENT':
-                          {
-                              angular.forEach(ctrl.local.agents, function (item, index) {
-                                  item.isSelected = false;
-                              });
+                    conversationService.delete(item.id).then(function (result) {
+                        loadConversation(ctrl.selectedValues.consultant);
+                        ctrl.isSaving = false;
+                    });
+                }
 
-                              ctrl.local.conversations = [];
-                              ctrl.selectedValues.agent = null;
-                              ctrl.selectedValues.consultant = null;
-                              ctrl.selectedValues.position = null;
-                          }
-                          break;
+                function loadPosition(consultant) {
+                    ctrl.local.positions = [];
+                    ctrl.loadingPositions = true;
 
-                      case 'CONSULTANT':
-                          {
-                              angular.forEach(ctrl.local.consultants, function (item, index) {
-                                  item.isSelected = false;
-                              });
+                    var criteria = {
+                        contactId: ctrl.selectedValues.consultant.id,
+                    }
 
-                              ctrl.local.conversations = [];
-                              ctrl.selectedValues.consultant = null;
-                              ctrl.selectedValues.position = null;
-                          }
-                          break;
+                    var _positions = positionService.getFiltered(criteria);
+                    _positions.then(function (response) {
 
-                      default:
+                        angular.forEach(response.data, function (position, key) {
+                            delete position.contactId;
+                            delete position.id;
+                        });
 
-                  }
-              }
+                        ctrl.loadingPositions = false;
+                        ctrl.local.positions = response.data;
+                        ctrl.positionGridOptions.data = ctrl.local.positions;
 
-              function initialise() {
-                  ctrl.local = {
-                      agents: [],
-                      consulatants: [],
-                      conversations: "",
-                      positions: [],
-                  }
-              }
+                        console.log('ctrl.positionGridOptions.data', ctrl.positionGridOptions.data);
+                    },
+                        function (error) {
+                            ctrl.loadingPositions = false;
+                            notifications.showError(error.status + ': ' + error.statusText);
+                            console.log('error occured retrieving positions: ' + error);
+                        });
 
-          }
+                }
+
+                function clearSelection(level) {
+                    switch (level) {
+                        case 'AGENT':
+                            {
+                                angular.forEach(ctrl.local.agents, function (item, index) {
+                                    item.isSelected = false;
+                                });
+
+                                ctrl.local.conversations = [];
+                                ctrl.selectedValues.agent = null;
+                                ctrl.selectedValues.consultant = null;
+                                ctrl.selectedValues.position = null;
+                            }
+                            break;
+
+                        case 'CONSULTANT':
+                            {
+                                angular.forEach(ctrl.local.consultants, function (item, index) {
+                                    item.isSelected = false;
+                                });
+
+                                ctrl.local.conversations = [];
+                                ctrl.selectedValues.consultant = null;
+                                ctrl.selectedValues.position = null;
+                            }
+                            break;
+
+                        default:
+
+                    }
+                }
+
+                function initialise() {
+                    ctrl.local = {
+                        agents: [],
+                        consulatants: [],
+                        conversations: "",
+                        positions: [],
+                    }
+                }
+
+            }
         ],
     }).component('conversationEdit', {
         templateUrl: 'conversationEdit.html',
@@ -291,7 +328,7 @@
                 // Disable weekend selection
                 function disabled(data) {
                     var date = data.date,
-                      mode = data.mode;
+                        mode = data.mode;
                     return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
                 }
 

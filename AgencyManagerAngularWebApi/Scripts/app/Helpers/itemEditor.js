@@ -13,19 +13,19 @@
         },
         templateUrl: '/Scripts/app/Helpers/itemEditor.html',
         controllerAs: 'ctrl',
-        controller: ['agentService',
-            function (agentService) {
+        controller: ['agentService', '$uibModal',
+            function (agentService, $uibModal) {
                 var ctrl = this;
 
                 ctrl.$onInit = function () {
-
+                    console.log('ctrl.item', ctrl.item)
                 }
-                
+
                 ctrl.new = function () {
                     ctrl.onNewClicked({
                         callBack: function (newItem) {
                             console.log(newItem);
-                            console.log(newItem.constructor.name);
+                            displayDialog(newItem);
                         }
                     });
                 }
@@ -49,7 +49,7 @@
                     }
                 }
 
-                function openAgent (editType, item) {
+                function openAgent(editType, item) {
                     var modalInstance = $uibModal.open({
                         animation: true,
                         component: 'agentEdit',
@@ -67,12 +67,51 @@
                     modalInstance.result.then(function () {
                     }, function (value) {
                         console.log('modal-component dismissed at: ' + new Date());
-                        if (value == 'REFRESH') {
-                            ctrl.itemChanged(value);
+                        console.log('value', value);
+                        if (value.type === 'REFRESH') {
+                            ctrl.itemChanged({ value: value });
                         }
                     });
                 }
             }
         ],
+    }).component('agentEdit', {
+        templateUrl: 'agentEdit.html',
+        bindings: {
+            resolve: '<',
+            close: '&',
+            dismiss: '&'
+        },
+        controllerAs: 'ctrl',
+        controller: ['agentService', function (agentService) {
+            var ctrl = this;
+
+            ctrl.isSaving = false;
+
+            ctrl.$onInit = function () {
+                ctrl.editParams = ctrl.resolve.editParams;
+                if (ctrl.editParams.editType == 'NEW') {
+                    ctrl.item = new agentService.factory().createAgent();
+                }
+                else {
+                    ctrl.item = ctrl.editParams.item;
+                }
+            };
+
+            ctrl.ok = function () {
+                ctrl.isSaving = true;
+
+                agentService.save(ctrl.item).then(function (result) {
+                    ctrl.isSaving = false;
+                    ctrl.dismiss({ $value: { type: 'REFRESH', item: result.data } });
+                });
+            };
+
+            ctrl.cancel = function () {
+                ctrl.dismiss({ $value: 'CANCEL' });
+            };
+
+        }]
+
     });
 })();

@@ -6,18 +6,25 @@
             <h3>Agencies</h3>
             <ul class="list-group">
                 <a href=""
+                   ng-hide="ctrl.loadingAgents"
                    class="list-group-item"
                    ng-class="{ 'item-selected' : agency.isSelected }"
                    ng-click="ctrl.selectAgent(agency)"
                    ng-repeat="agency in ctrl.local.agents">
-                    {{ agency.name }}
+                    {{ agency.name }} {{agency.isSelected}}
                 </a>
             </ul>
-            <item-editor item-type="'AGENT'" 
-                         item="ctrl.selectedValues.agent" 
+            <div ng-show="ctrl.loadingAgents" class="text-center">
+                <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
+                <img src="../../../Content/icons/ajax-loader-sm.gif" />
+            </div>
+
+            <item-editor item-type="'AGENT'"
+                         item="ctrl.selectedValues.agent"
                          on-new-clicked="ctrl.onNewAgentClicked(callBack)"
                          on-edit-clicked="ctrl.newAgent()"
-                         on-delete-clicked="ctrl.newAgent()">
+                         on-delete-clicked="ctrl.newAgent()"
+                         item-changed="ctrl.agentChanged(value)">
 
             </item-editor>
         </div>
@@ -27,6 +34,7 @@
                     <h3>Consultants</h3>
                     <ul class="list-group">
                         <a href=""
+                           ng-hide="ctrl.loadingConsultants"
                            class="list-group-item"
                            ng-class="{ 'item-selected' : consultant.isSelected }"
                            ng-click="ctrl.selectConsultant(consultant)"
@@ -34,6 +42,10 @@
                             {{ consultant.name }}
                         </a>
                     </ul>
+                    <div ng-show="ctrl.loadingConsultants" class="text-center">
+                        <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
+                        <img src="../../../Content/icons/ajax-loader-sm.gif" />
+                    </div>
                 </div>
                 <div class="col-md-8" ng-show="ctrl.selectedValues.consultant">
                     <h3>&nbsp;</h3>
@@ -41,7 +53,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">Conversations</h4>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" ng-hide="ctrl.loadingConversation">
                             <div ng-show="ctrl.selectedValues.consultant && ctrl.local.conversations && ctrl.local.conversations.length == 0">
                                 <h6 class="italic">No conversations</h6>
                             </div>
@@ -54,6 +66,10 @@
                             </contact-conversation>
                             <a href="" class="pull-right" ng-click="ctrl.openConversation('NEW')">New</a>
                         </div>
+                        <div ng-show="ctrl.loadingConversation" class="text-center">
+                            <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
+                            <img src="../../../Content/icons/ajax-loader-sm.gif" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,7 +78,15 @@
     <div class="row" ng-show="ctrl.selectedValues.consultant != null">
         <div class="col-md-12">
             <h3>Positions</h3>
-            <div ui-grid="ctrl.positionGridOptions" class="position-grid"></div>
+            <div ui-grid="ctrl.positionGridOptions"
+                 class="position-grid"
+                 ng-hide="ctrl.loadingPositions">
+
+            </div>
+            <div ng-show="ctrl.loadingPositions" class="text-center">
+                <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
+                <img src="../../../Content/icons/ajax-loader-sm.gif" />
+            </div>
         </div>
     </div>
 </div>
@@ -76,6 +100,7 @@
         <div class="conversation-header">
             <span>{{ ctrl.conversation.time | date }}</span>
         </div>
+        <!--</div>-->
         <span class="pull-right">
             <a href="" ng-click="ctrl.open('EDIT', ctrl.conversation)">Edit</a>
             <a href="" ng-click="ctrl.delete(ctrl.conversation)">Delete</a>
