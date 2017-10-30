@@ -2,6 +2,31 @@
 
     var contactService = {};
 
+    function contact() {
+        this.typeName = 'CONTACT';
+        this.id = 0;
+        this.agentId = 0;
+        this.firstName = '';
+        this.lastName = '';
+        this.phone = '';
+        this.mobile = '';
+        this.fax = '';
+        this.email = '';
+        this.notes = '';
+        this.contactType = '';
+        this.companyId = 0;
+        this.contactCategoryId = 0;
+        this.conversations = [];
+        this.interviews = [];
+        this.positions = [];
+    }
+
+    contactService.factory = function () {
+        this.createContact = function () {
+            return new contact();
+        }
+    }
+
     contactService.getAll = function () {
         return $http.get('/api/contact');
     }

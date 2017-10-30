@@ -2,21 +2,31 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\services\addressservice.js</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\Admin\AddressController.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\admin.html</string>
-      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\admin.js</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\Admin\addresses.html</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\Admin\addresses.js</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\agency.html</string>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\Agency.js</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\admin.html</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\admin.js</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\models\agent.cs</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\agency.html</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\agency.js</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\services\agentservice.js</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\AgentController.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\DAL\Repository\AgentRepository.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Services\agentService.js</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Services\contactService.js</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\helpers\itemeditor.html</string>

@@ -3,6 +3,7 @@
     var agentService = {};
 
     var agent = function () {
+        this.typeName = 'AGENT',
         this.id = 0,
         this.name = ''
     }

@@ -5,6 +5,9 @@
     agencyManager.component('admin', {
         bindings: {},
         templateUrl: '/Scripts/app/views/admin.html',
+        require: {
+            parent: '^root'
+        },
         $routeConfig: [
           { path: '/addresses', name: 'ADDRESSES', component: 'addresses', useAsDefault: true },
           { path: '/companyCategories', name: 'COMPANYCATEGORIES', component: 'companyCategories' },

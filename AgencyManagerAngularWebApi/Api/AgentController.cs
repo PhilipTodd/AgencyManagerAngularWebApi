@@ -66,8 +66,11 @@ namespace AgencyManager.Api
         }
 
         // DELETE: api/Agency/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            agentRepository.DeleteAgent(id);
+            agentRepository.Save();
+            return Ok();
         }
     }
 }

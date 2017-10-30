@@ -5,6 +5,9 @@
     agencyManager.component('documents', {
         bindings: {},
         templateUrl: '/Scripts/app/views/documents.html',
+        require: {
+            parent: '^root'
+        },
         controllerAs: 'ctrl',
         controller: ['agentService',
           function (agentService) {

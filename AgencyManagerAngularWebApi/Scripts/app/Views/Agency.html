@@ -11,19 +11,18 @@
                    ng-class="{ 'item-selected' : agency.isSelected }"
                    ng-click="ctrl.selectAgent(agency)"
                    ng-repeat="agency in ctrl.local.agents">
-                    {{ agency.name }} {{agency.isSelected}}
+                    {{ agency.name }}
                 </a>
             </ul>
             <div ng-show="ctrl.loadingAgents" class="text-center">
                 <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
                 <img src="../../../Content/icons/ajax-loader-sm.gif" />
             </div>
-
             <item-editor item-type="'AGENT'"
                          item="ctrl.selectedValues.agent"
                          on-new-clicked="ctrl.onNewAgentClicked(callBack)"
-                         on-edit-clicked="ctrl.newAgent()"
-                         on-delete-clicked="ctrl.newAgent()"
+                         on-edit-clicked=""
+                         on-delete-clicked="ctrl.deleteAgent(value)"
                          item-changed="ctrl.agentChanged(value)">
 
             </item-editor>
@@ -46,6 +45,14 @@
                         <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
                         <img src="../../../Content/icons/ajax-loader-sm.gif" />
                     </div>
+                    <item-editor item-type="'CONSULTANT'"
+                                 item="ctrl.selectedValues.consultant"
+                                 on-new-clicked="ctrl.onNewConsultantClicked(callBack)"
+                                 on-edit-clicked=""
+                                 on-delete-clicked="ctrl.deleteConsultant(value)"
+                                 item-changed="ctrl.consultantChanged(value)">
+
+                    </item-editor>
                 </div>
                 <div class="col-md-8" ng-show="ctrl.selectedValues.consultant">
                     <h3>&nbsp;</h3>
@@ -86,7 +93,15 @@
             <div ng-show="ctrl.loadingPositions" class="text-center">
                 <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
                 <img src="../../../Content/icons/ajax-loader-sm.gif" />
-            </div>
+            </div>S
+            <!--<item-editor item-type="'POSITION'"
+                         item="ctrl.selectedValues.position"
+                         on-new-clicked="ctrl.onNewPositionClicked(callBack)"
+                         on-edit-clicked=""
+                         on-delete-clicked="ctrl.deletePosition(value)"
+                         item-changed="ctrl.positionChanged(value)">
+
+            </item-editor>-->
         </div>
     </div>
 </div>

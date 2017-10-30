@@ -5,6 +5,9 @@
     agencyManager.component('interviews', {
         bindings: {},
         templateUrl: '/Scripts/app/views/interviews.html',
+        require: {
+            parent: '^root'
+        },
         controllerAs: 'ctrl',
         controller: ['agentService',
           function (agentService) {

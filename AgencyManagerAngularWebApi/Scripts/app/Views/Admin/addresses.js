@@ -39,7 +39,7 @@
                   modalInstance.result.then(function () {
                   }, function (value) {
                       console.log('modal-component dismissed at: ' + new Date());
-                      if (value == 'REFRESH') {
+                      if (value === 'REFRESH') {
                           ctrl.load();
                       }
                   });
@@ -72,7 +72,7 @@
 
                 ctrl.$onInit = function () {
                     ctrl.editParams = ctrl.resolve.editParams;
-                    if (ctrl.editParams.editType == 'NEW') {
+                    if (ctrl.editParams.editType === 'NEW') {
                         ctrl.item = addressService.newAddress();
                     }
                     else {

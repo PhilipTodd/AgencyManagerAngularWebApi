@@ -17,6 +17,7 @@
 
                 ctrl.local = {};
                 var agentFactory = new agentService.factory();
+                var contactFactory = new contactService.factory();
 
                 var columnDefs = [
                     {
@@ -26,6 +27,7 @@
                         width: '200',
                         enableHiding: false,
                         enableSorting: false,
+                        enableCellEdit: true,
                         //enableFiltering: true,
                         //filter: {
                         //    term: 'xx',
@@ -83,6 +85,12 @@
                     callBack(newAgent);
                 }
 
+                ctrl.onNewConsultantClicked = function (callBack) {
+                    var newConsultant = contactFactory.createContact();
+                    newConsultant.agentId = ctrl.selectedValues.agent.id;
+                    callBack(newConsultant);
+                }
+
                 ctrl.agentChanged = function (value) {
                     console.log('ctrl.agentChanged = function (item) {', value);
 
@@ -104,12 +112,37 @@
                     }
                 };
 
+                ctrl.consultantChanged = function (value) {
+                    console.log('ctrl.consultantChanged = function (item) {', value);
+
+                    if (value.type = 'REFRESH') {
+                        ctrl.load(function () {
+
+                            var index = null;
+
+                            angular.forEach(ctrl.local.consultants, function (item, key) {
+                                if (item.id == value.item.id) {
+                                    index = ctrl.local.consultants.indexOf(item);
+                                }
+                            });
+
+                            ctrl.local.consultants[index] = angular.copy(value.item);
+
+                            ctrl.selectConsultant(ctrl.local.consultants[index]);
+                        });
+                    }
+                };
+
                 ctrl.load = function (callBack) {
                     ctrl.loadingAgents = true;
 
                     var _agencies = agentService.getAll();
                     _agencies.then(function (response) {
                         ctrl.local.agents = response.data;
+
+                        angular.forEach(ctrl.local.agents, function (item, key) {
+                            item.typeName = 'AGENT';
+                        });
 
                         //$timeout(function () {
                         //    ctrl.loadingAgents = false;
@@ -134,6 +167,28 @@
                     loadConsultants(agent);
                 }
 
+                ctrl.deleteAgent = function (value) {
+                    agentService.delete(value.item.id)
+                        .then(function (result) {
+                            notifications.showSuccess('Delete successful')
+                            ctrl.load();
+                        },
+                        function () {
+                            notifications.showError(error.status + ': ' + error.statusText);
+                        });
+                }
+
+                ctrl.deleteConsultant = function (value) {
+                    contactService.delete(value.item.id)
+                        .then(function (result) {
+                            notifications.showSuccess('Delete successful')
+                            ctrl.load();
+                        },
+                        function () {
+                            notifications.showError(error.status + ': ' + error.statusText);
+                        });
+                }
+
                 function loadConsultants(agent) {
                     ctrl.loadingConsultants = true;
                     ctrl.local.consultants = [];
@@ -145,6 +200,11 @@
                     var _consultants = contactService.getFiltered(criteria);
                     _consultants.then(function (response) {
                         ctrl.local.consultants = response.data;
+
+                        angular.forEach(ctrl.local.consultants, function (item, key) {
+                            item.typeName = 'CONSULTANT';
+                        });
+
                         ctrl.loadingConsultants = false;
 
                         clearSelection('CONSULTANT');
@@ -177,6 +237,7 @@
 
                         angular.forEach(response.data, function (item, key) {
                             item.time = new Date(item.time);
+                            item.typeName = 'CONVERSATION';
                         });
 
                         ctrl.loadingConversation = false;
@@ -237,6 +298,7 @@
                         angular.forEach(response.data, function (position, key) {
                             delete position.contactId;
                             delete position.id;
+                            position.typeName = 'POSITION';
                         });
 
                         ctrl.loadingPositions = false;
@@ -251,6 +313,12 @@
                             console.log('error occured retrieving positions: ' + error);
                         });
 
+                }
+
+                ctrl.selectPosition = function (position) {
+                    clearSelection('POSITION');
+                    position.isSelected = true;
+                    ctrl.selectedValues.position = position;
                 }
 
                 function clearSelection(level) {
