@@ -87,13 +87,16 @@
             <h3>Positions</h3>
             <div ui-grid="ctrl.positionGridOptions"
                  class="position-grid"
+                 ui-grid-edit
+                 ui-grid-row-edit
+                 ui-grid-cellNav
                  ng-hide="ctrl.loadingPositions">
-
+                <a href="" class="pull-right" ng-click="ctrl.newPosition()">New</a>
             </div>
             <div ng-show="ctrl.loadingPositions" class="text-center">
                 <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>-->
                 <img src="../../../Content/icons/ajax-loader-sm.gif" />
-            </div>S
+            </div>
             <!--<item-editor item-type="'POSITION'"
                          item="ctrl.selectedValues.position"
                          on-new-clicked="ctrl.onNewPositionClicked(callBack)"
@@ -111,6 +114,7 @@
     <div class="conversation-container" ng-class="{ 'odd' : (ctrl.index % 2) == 0, 'even' : (ctrl.index % 2) != 0 }">
 
         <!--ctrl.conversation: {{ctrl.conversation}}-->
+        <div class="conve
 
         <div class="conversation-header">
             <span>{{ ctrl.conversation.time | date }}</span>

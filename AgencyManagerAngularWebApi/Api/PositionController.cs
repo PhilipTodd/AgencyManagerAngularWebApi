@@ -19,7 +19,7 @@ namespace AgencyManager.Api
             PositionRepository = new PositionRepository(new AgencyManagerContext());
         }
 
-        // GET: api/Agency
+        // GET: api/Position
         public IHttpActionResult Get([FromUri]PositionRepository.PositionCriteria criteria)
         {
             var result = PositionRepository.GetPositions(criteria).Select(Position => new

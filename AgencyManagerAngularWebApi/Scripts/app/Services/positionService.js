@@ -2,16 +2,18 @@
 
     var positionService = {};
 
-    positionService.newPosition = function (contactId) {
-        var newitem = {
-            id: 0,
-            contactId: contactId,
-            title: '',
-            responsibilities: '',
-            skills: '',
-        }
+    function position(contactId) {
+        this.id = 0;
+        this.contactId = contactId;
+        this.title = '';
+        this.responsibilities = '';
+        this.skills = '';
+    }
 
-        return newitem;
+    positionService.factory = function () {
+        this.createPosition = function (contactId) {
+            return new position(contactId);
+        }
     }
 
     positionService.getAll = function () {

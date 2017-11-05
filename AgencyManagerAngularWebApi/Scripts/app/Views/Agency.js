@@ -9,17 +9,31 @@
             parent: '^root'
         },
         controllerAs: 'ctrl',
-        controller: ['$scope', 'agentService', 'contactService', 'conversationService',
+        controller: ['$scope', '$q', '$interval', 'agentService', 'contactService', 'conversationService',
             'positionService', '$uibModal', 'notifications', 'uiGridConstants', '$timeout',
-            function ($scope, agentService, contactService, conversationService,
+            function ($scope, $q, $interval, agentService, contactService, conversationService,
                 positionService, $uibModal, notifications, uiGridConstants, $timeout) {
                 var ctrl = this;
 
                 ctrl.local = {};
                 var agentFactory = new agentService.factory();
                 var contactFactory = new contactService.factory();
+                var positionFactory = new positionService.factory();
 
                 var columnDefs = [
+                    {
+                        field: 'id',
+                        //displayName: 'Id',
+                        visible: false,
+                        //width: '200',
+                        //enableHiding: false,
+                        //enableSorting: false,
+                        //enableCellEdit: true,
+                    },
+                    {
+                        field: 'contactId',
+                        visible: false,
+                    },
                     {
                         field: 'title',
                         displayName: 'Title',
@@ -58,11 +72,26 @@
                     }
                 ];
 
+                ctrl.saveRow = function (rowEntity) {
+                    var promise = positionService.save(rowEntity);
+                    $scope.gridApi.rowEdit.setSavePromise(rowEntity, promise);
+                };
+
+                ctrl.newPosition = function () {
+                    var newPosition = positionFactory.createPosition(ctrl.selectedValues.consultant.id);
+                    ctrl.local.positions.push(newPosition);
+                }
+
                 ctrl.positionGridOptions = {
                     enableSorting: false,
                     enableColumnResizing: true,
                     columnDefs: columnDefs,
                     data: ctrl.local.positions,
+                    onRegisterApi: function (gridApi) {
+                        //set gridApi on scope
+                        $scope.gridApi = gridApi;
+                        gridApi.rowEdit.on.saveRow($scope, ctrl.saveRow);
+                    }
                 }
 
                 ctrl.selectedValues = {
@@ -296,8 +325,8 @@
                     _positions.then(function (response) {
 
                         angular.forEach(response.data, function (position, key) {
-                            delete position.contactId;
-                            delete position.id;
+                            //delete position.contactId;
+                            //delete position.id;
                             position.typeName = 'POSITION';
                         });
 
