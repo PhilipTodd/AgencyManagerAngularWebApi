@@ -17,37 +17,37 @@
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\agency.js</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\DAL\AgencyManagerContext.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\dal\agencymanagercontext.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\agentcontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\DAL\Repository\AgentRepository.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\dal\repository\agentrepository.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\Admin\CompanyCategoryController.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\admin\companycategorycontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\DAL\Repository\CompanyCategoryRepository.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\dal\repository\companycategoryrepository.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\Admin\ContactCategoryController.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\admin\contactcategorycontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\ContactController.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\contactcontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\ConversationController.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\conversationcontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\documents.js</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Api\Admin\IndustryController.cs</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\api\admin\industrycontroller.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\views\interviews.js</string>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Scripts\app\Views\interviews.js</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\helpers\itemeditor.html</string>
@@ -66,13 +66,16 @@
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\content\site.css</string>
     </ArrayOfString>
     <ArrayOfString>
+      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Startup.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\app\startup.js</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\scripts\vendor\ui-grid.js</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Phil\Documents\Visual Studio 2017\Projects\AgencyManagerAngularWebApi\AgencyManagerAngularWebApi\Web.config</string>
+      <string>c:\users\phil\documents\visual studio 2017\projects\agencymanagerangularwebapi\agencymanagerangularwebapi\web.config</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
