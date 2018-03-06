@@ -23,12 +23,7 @@
                 var columnDefs = [
                     {
                         field: 'id',
-                        //displayName: 'Id',
                         visible: false,
-                        //width: '200',
-                        //enableHiding: false,
-                        //enableSorting: false,
-                        //enableCellEdit: true,
                     },
                     {
                         field: 'contactId',
@@ -69,6 +64,16 @@
                         width: '300',
                         enableHiding: false,
                         enableSorting: false,
+                    },
+                    {
+                        field: 'delete',
+                        displayName: '',
+                        visible: true,
+                        width: '100',
+                        enableHiding: false,
+                        enableSorting: false,
+                        cellClass: 'grid-column-text-center',
+                        cellTemplate: '<span class="glyphicon glyphicon-plus red" ng-click="ctrl.deletePosition()"></span>',
                     }
                 ];
 
@@ -77,6 +82,10 @@
                     $scope.gridApi.rowEdit.setSavePromise(rowEntity, promise);
                 };
 
+                ctrl.deletePosition = function () {
+                    alert(rowId);
+                }
+                
                 ctrl.newPosition = function () {
                     var newPosition = positionFactory.createPosition(ctrl.selectedValues.consultant.id);
                     ctrl.local.positions.push(newPosition);
